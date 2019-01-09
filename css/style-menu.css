@@ -1,0 +1,61 @@
+body
+{
+	font-family:tahoma;
+	font-size:13px;
+	padding:50px;
+	direction:rtl;
+}
+
+#main
+{
+	float:right;
+	list-style:none;
+	border:1px solid #aaa;
+	border-left:none;
+	position:absolute;
+}
+#main li
+{
+	position:relative;
+	float:right;
+	padding:0 15px;
+	border-left:1px solid #aaa;
+}
+#main li a
+{
+	text-decoration:none;
+	float:right;
+	line-height:32px;
+}
+#main li a:hover
+{
+	
+color:red;
+}
+#main li ul 
+{
+	list-style:none;
+	display:none;
+	position:absolute;
+	top:32px;
+	width:120px;
+border:1px solid #aaa;
+}
+#main li:hover ul
+{
+	display:block;
+}
+#main li ul li
+{
+	float:none;
+	border-left:none;
+	border-bottom:1px solid #aaa;
+	width:130px;
+	left:40px;
+	
+}
+#main li ul li a
+{
+	float:none;
+	display:block;
+}

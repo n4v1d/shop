@@ -1,0 +1,18 @@
+All Change Log
+
+// Version : 3.2
+// 1397/09/21
+New Feature:
+Add Last Buy System Api For mojodi
+Make Dynamic franchise price (calculate by Store Percent)
+
+File Change List :
+        modified:   ChangeLog.Txt
+        modified:   ViewFactorBuyEntityDetail.php
+        modified:   class/branch.class.php
+        modified:   class/entity.class.php
+        modified:   class/mojodi.class.php
+        modified:   index.php
+
+
+________________________________________________________________________________________________________________________
