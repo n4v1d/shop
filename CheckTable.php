@@ -91,7 +91,7 @@ error_reporting(0)
                <a href="CheckTable.php"><input type="button" value="تحویل نشده" class="form-control input-lg btn btn-lg btn-info"> </a>
            </div>
            <div class="form-group col-lg-3">
-               <a href="CheckTablewait.php"> <input type="button" value="تحویل شده" class="form-control input-lg btn btn-lg btn-warning"></a>
+               <a href="CheckTableWait.php"> <input type="button" value="تحویل شده" class="form-control input-lg btn btn-lg btn-warning"></a>
            </div>
            <div class="form-group col-lg-3">
                <a href="index.php"> <input type="button" value="سیستم نوید" class="form-control input-lg btn btn-lg btn-success"></a>

@@ -283,20 +283,14 @@ session_start();
                                         <ul  class="dropdown-menu">
 
                                             <li ><a href="#calender" id="calender" class=" page"   style="font-size: 20px">سیستم   یاد آور </a></li>
+
                                             <?php
-                                            if($_SESSION['UserId'] == '1' || $_SESSION['UserId'] == '9' || $_SESSION['UserId'] == '5') {
+                                            if($_SESSION['UserId'] == '1' || $_SESSION['UserId'] == '9' || $_SESSION['UserId'] == '25' || $_SESSION['UserId'] == '5'|| $_SESSION['UserId'] == '48'|| $_SESSION['UserId'] == '61'|| $_SESSION['UserId'] == '62') {
                                                 ?>
                                                 <li class="divider"></li>
                                                 <li ><a href="#ConfirmCheck" id="ConfirmCheck" class=" page"   style="font-size: 20px">تایید چک </a></li>
                                                 <li class="divider"></li>
                                                 <li ><a href="#awaitingCheck" id="awaitingCheck" class=" page"   style="font-size: 20px"> چک منتظر ثبت </a></li>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if($_SESSION['UserId'] == '1' || $_SESSION['UserId'] == '9' || $_SESSION['UserId'] == '25' || $_SESSION['UserId'] == '5'|| $_SESSION['UserId'] == '48') {
-                                                ?>
                                                 <li class="divider"></li>
                                                 <li ><a href="CheckTable.php" id="CalenderCheck" class=" page"   style="font-size: 20px">مدیریت چک  تحویل نشده</a></li>
                                                 <li class="divider"></li>

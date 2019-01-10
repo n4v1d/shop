@@ -339,9 +339,9 @@ error_reporting(0)
 
         <td>لیست چک ها</td>
 
-        <td> <?php $calender->GetDayCheckSum('29',$month,$year , 2) ?> </td>
-        <td> <?php $calender->GetDayCheckSum('30',$month,$year , 2) ?> </td>
-        <td> <?php $calender->GetDayCheckSum('31',$month,$year , 2) ?> </td>
+        <td> <?php $calender->GetDayCheck('29',$month,$year , 2) ?> </td>
+        <td> <?php $calender->GetDayCheck('30',$month,$year , 2) ?> </td>
+        <td> <?php $calender->GetDayCheck('31',$month,$year , 2) ?> </td>
 
     </tr>
 
