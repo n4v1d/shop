@@ -1183,10 +1183,14 @@ function viewFactor()
         });
 
         function refresh() {
+            $("#AjaxResult").loading();
+
             var id = <?php echo $id; ?>;
             $.post('page.php',{page:'getFactorEntery', id:id}, function (data) {
 
                 $("#AjaxResult").html(data);
+
+                $("#AjaxResult").loading('stop');
                 $("body").off();
             });
         }

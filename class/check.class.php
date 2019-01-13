@@ -11,6 +11,7 @@ class check
     public $price;
     public $time;
     public $status;
+    public $type;
 
     public function UpdateCheckLenth($factorid,$len , $time)
     {
@@ -286,6 +287,7 @@ class check
         $result->execute();
 
         ?>
+
         <form method="get" action="Check_List.php">
             <input  class="btn btn-lg btn-success" type="submit" style="position: fixed;z-index: 1000" value="ثبت دسته ای">
             <table class="table table-hover table-bordered table-striped table-responsive">
@@ -342,6 +344,8 @@ class check
         </form>
         <script>
             $(".sve").click(function () {
+                $("#content").loading();
+
                 var id =this.id;
                 var Lenid = "len"+this.id;
                 var len = $("#"+Lenid).val();
@@ -349,15 +353,33 @@ class check
                     if(data == 1)
                     {
                         alert('با موفقیت ثبت شد');
+                        refresh();
+
+
 
                     }
                     else
                     {
                         alert('خطا');
+                        refresh();
+
                     }
                 });
 
             });
+
+
+
+            function refresh() {
+                $.post('page.php',{page:'ConfirmCheck'}, function (data) {
+                    $("#content").loading('stop');
+                    $("#content").html(data);
+                });
+            }
+
+
+
+
         </script>
         <?php
     }
@@ -510,5 +532,32 @@ class check
         }
 
     }
+
+
+
+
+    public function ChangeCheckType($id,$type)
+    {
+        $dbconect = new db();
+        $sql = "update checks set check_type = :type where id = :id";
+        $result = $dbconect->connect->prepare($sql);
+        $result->bindParam("id",$id);
+        $result->bindParam("type",$type);
+
+        $result->execute();
+
+        if($result->rowCount() > 0)
+        {
+            echo 'با موفقت تغییر یافت';
+        }
+        else
+        {
+            echo 'خطا در تغییر اطلاعات';
+        }
+    }
+
+
+
+
 }
 ?>

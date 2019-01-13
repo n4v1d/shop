@@ -8,6 +8,7 @@ session_start();
     <!--css-->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/jquery.loading.css" rel="stylesheet" type="text/css" media="all"/>
 
 
     <!--js-->
@@ -20,7 +21,7 @@ session_start();
     <script src="js/editable.js"></script>
     <script src="js/switalert.js"></script>
 
-
+    <script src="js/jquery.loading.js"></script>
 
     <script>
         $(document).ready(function(e) {

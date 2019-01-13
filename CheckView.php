@@ -69,6 +69,8 @@ $check->GetCheckDetail($id);
         <td><b><?php echo jdate('Y/m/d' , $check->time_check , '','','en') ;?></b></td>
     </tr>
 
+
+
     <tr>
         <td>  <b>  مدیریت </b></td>
         <td><a href="tahvil.php?id=<?php echo $id; ?>"><input type="submit" class="btn btn-success btn-lg " value="تحویل شده"> </td>
@@ -76,9 +78,39 @@ $check->GetCheckDetail($id);
     <tr>
         <td>  <b>  تغییر تاریخ یا مبلغ </b></td>
         <td><a href="editCheck.php?id=<?php echo $id; ?>"><input type="submit" class="btn btn-danger btn-lg " value="تغییر اطلاعات "> </td>
-    </tr>    <tr>
+    </tr>
+
+
+    <form method="post" action="SetCheckType.php">
+        <tr>
+            <td>
+                <b> حواله / چک</b></td>
+            <td>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                    <select name="type" class="form-control input-lg" >
+                        <option value="0">چک</option>
+                        <option value="1">حواله</option>
+                    </select>
+
+                    <input type="hidden" value="<?php echo $id; ?>" name="id">
+
+                </div>
+
+
+                <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                    <button class="form-control input-lg btn btn-lg btn-primary">ذخیره</button>
+                </div>
+
+            </td>
+        </tr>
+
+
+    </form>
+    <tr>
         <td colspan="2"><h3>ریز تغییرات فاکتور</h3> </td>
     </tr>
+
+
 </table>
 
 <?php
