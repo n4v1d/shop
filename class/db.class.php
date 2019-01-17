@@ -1,10 +1,10 @@
 <?php
 class db
 {
-    private $servername = "192.168.1.12";
+    private $servername = "localhost";
     private $dbtype = "mysql";
-    private $dbname = "test";
-    private $dbuser = "remote";
+    private $dbname = "shop2";
+    private $dbuser = "root";
     private $dbpass = "";
     private $dsn;
     public $connect;
