@@ -840,22 +840,38 @@ class calender
                 if($rows->status == 1 || $rows->status == 5) {
                     ?>
 
-                    <input class="" type="checkbox" name="check_list[]" value="<?php echo $rows->factorid?>">
+                    <span
+                            <?php if($rows->check_type == 1)
+                                {
+                                    echo '  style="background-color: #bfffb2"';
+                                }
+                            ?>
+
+
+                    ><input class="" type="checkbox" name="check_list[]" value="<?php echo $rows->factorid?>">
                     <span style="color: green;" onclick="myFunction(<?php echo $rows->id; ?>)"><?php echo $company->name ?></span>
 
 
                     | <span
-                            onclick="myFunction(<?php echo $rows->id; ?>)"
-                            style="color: red"><?php echo $rows->factorid; ?> </span> | <span
-                            onclick="myFunction(<?php echo $rows->id; ?>)"
-                            style="color:blue;"><?php echo number_format($rows->price) ?> </span><br>
+                                onclick="myFunction(<?php echo $rows->id; ?>)"
+                                style="color: red"><?php echo $rows->factorid; ?> </span> | <span
+                                onclick="myFunction(<?php echo $rows->id; ?>)"
+                                style="color:blue;"><?php echo number_format($rows->price) ?> </span><br></span>
                     <?php
                 }
 
 
                 if($rows->status  == 2) {
                     ?>
+                        <span
+                            <?php if($rows->check_type == 1)
+                            {
+                                echo '  style="background-color: #bfffb2"';
+                            }
+                            ?>
 
+
+                        >
                     <span style="color: blue;" onclick="myFunction2(<?php echo $rows->id; ?>)"><?php echo $company->name ?></span>
 
 
@@ -863,14 +879,22 @@ class calender
                             onclick="myFunction2(<?php echo $rows->id; ?>)"
                             style="color: red"><?php echo $rows->factorid; ?> </span> | <span
                             onclick="myFunction2(<?php echo $rows->id; ?>)"
-                            style="color:blue;"><?php echo number_format($rows->price) ?> </span><br>
+                            style="color:blue;"><?php echo number_format($rows->price) ?> </span></span><br>
                     <?php
                 }
 
 
                 if($rows->status  == 3) {
                     ?>
+                        <span
+                            <?php if($rows->check_type == 1)
+                            {
+                                echo '  style="background-color: #bfffb2"';
+                            }
+                            ?>
 
+
+                        >
                     <span style="color: green;" onclick="myFunction2(<?php echo $rows->id; ?>)"><?php echo $company->name ?></span>
 
 
@@ -878,13 +902,21 @@ class calender
                             onclick="myFunction2(<?php echo $rows->id; ?>)"
                             style="color: red"><?php echo $rows->factorid; ?> </span> | <span
                             onclick="myFunction2(<?php echo $rows->id; ?>)"
-                            style="color:blue;"><?php echo number_format($rows->price) ?> </span><br>
+                            style="color:blue;"><?php echo number_format($rows->price) ?> </span></span><br>
                     <?php
                 }
 
                 if($rows->status  == 4 ) {
                     ?>
+                        <span
+                            <?php if($rows->check_type == 1)
+                            {
+                                echo '  style="background-color: #bfffb2"';
+                            }
+                            ?>
 
+
+                        >
                     <span style="color: red;" onclick="myFunction2(<?php echo $rows->id; ?>)"><?php echo $company->name ?></span>
 
 
@@ -892,7 +924,8 @@ class calender
                             onclick="myFunction2(<?php echo $rows->id; ?>)"
                             style="color: red"><?php echo $rows->factorid; ?> </span> | <span
                             onclick="myFunction2(<?php echo $rows->id; ?>)"
-                            style="color:blue;"><?php echo number_format($rows->price) ?> </span><br>
+                            style="color:blue;"><?php echo number_format($rows->price) ?> </span>
+                        </span><br>
                     <?php
                 }
 
@@ -928,13 +961,19 @@ class calender
             {
                 ?>
                 <tr >
-                    <td> تحویل نشده</td>
-                    <td><?php $this->GetDayCheckSumsungive($day_start,$day_end);?></td>
+                    <td> چک</td>
+                    <td><?php $this->GetDayCheckSumsungive($day_start,$day_end,0);?></td>
                 </tr>
 
+                <tr style="background-color: #e4ffde" >
+                    <td> حواله</td>
+                    <td><?php $this->GetDayCheckSumsungive($day_start,$day_end,1);?></td>
+                </tr>
+
+
                 <tr >
-                    <td>جمع کل</td>
-                    <td><?php $this->GetTodalDaySum($day_start,$day_end);?></td>
+                    <td>جمع روز</td>
+                    <td><?php $this->GetTodalDaySum($day_start,$day_end,'4');?></td>
                 </tr>
 
                 <?php
@@ -947,19 +986,48 @@ class calender
 
                 <tr style="color: blue;">
                     <td>تحویل شده</td>
-                    <td><?php $this->GetDayCheckSumsgive($day_start,$day_end);?></td>
+                    <td><?php $this->GetDayCheckSumsgive($day_start,$day_end,'0');?></td>
                 </tr>
 
                 <tr style="color: green;">
                     <td>پاس شده</td>
-                    <td><?php $this->GetDayCheckSumsPassed($day_start,$day_end);?></td>
+                    <td><?php $this->GetDayCheckSumsPassed($day_start,$day_end,0);?></td>
                 </tr>
 
 
                 <tr >
                     <td>جمع کل</td>
-                    <td><?php $this->GetTodalDaySum($day_start,$day_end);?></td>
+                    <td><?php $this->GetTodalDaySum($day_start,$day_end,'0');?></td>
                 </tr>
+
+
+
+
+
+                <tr style=" color: blue;background-color: #e4ffde">
+                    <td>تحویل شده</td>
+                    <td><?php $this->GetDayCheckSumsgive($day_start,$day_end,1);?></td>
+                </tr>
+
+                <tr style="color: green;background-color: #e4ffde">
+                    <td>پاس شده</td>
+                    <td><?php $this->GetDayCheckSumsPassed($day_start,$day_end,1);?></td>
+                </tr>
+
+
+                <tr style="background-color: #e4ffde">
+                    <td >جمع کل</td>
+                    <td><?php $this->GetTodalDaySum($day_start,$day_end , 1);?></td>
+                </tr>
+
+
+                <tr >
+                    <td>جمع روز</td>
+                    <td><?php $this->GetTodalDaySum($day_start,$day_end,'');?></td>
+                </tr>
+
+
+
                 <?php
             }
 
@@ -976,26 +1044,28 @@ class calender
 
 
 
-    public function GetDayCheckSumsPassed($day_start,$day_end)
+    public function GetDayCheckSumsPassed($day_start,$day_end,$type)
     {
-        $this->day_sum = 0
+        $this->day_sum = 0;
+        $this->day_sum_pass = 0;
         ?>
 
         <?php
         $dbconnect = new db();
 
 
-            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and status = 3 ";
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and status = 3  and check_type = :type";
 
 
 
         $result = $dbconnect->connect->prepare($sql);
+        $result->bindParam("type",$type);
         $result->execute();
 
         if ($result->rowCount() > 0) {
             $data = $result->fetchAll(PDO::FETCH_OBJ);
             foreach ($data as $rows) {
-                $this->day_sum_pass = $this->day_sum + $rows->price;
+                $this->day_sum_pass = $this->day_sum_pass + $rows->price;
 
             }
         }
@@ -1007,7 +1077,7 @@ class calender
 
 
 
-    public function GetTodalDaySum($day_start,$day_end)
+    public function GetTodalDaySum($day_start,$day_end,$type )
     {
         $this->day_sum_total = 0
         ?>
@@ -1015,8 +1085,45 @@ class calender
         <?php
         $dbconnect = new db();
 
+        if($type == 0)
+        {
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and check_type = 0 and status in (2,3,4)";
 
-            $sql = "select * from checks where time_check > $day_start and time_check < $day_end ";
+        }
+
+        if($type == 1)
+        {
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and check_type = 1 and status in (2,3,4)";
+
+        }
+        if($type == 2)
+        {
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and check_type = 0 and status in (1,5)";
+
+        }
+
+
+        if($type == 3)
+        {
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and check_type = 1 and status in (1,5)";
+
+        }
+
+        if($type == 4)
+        {
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end and status in (1,5)";
+
+        }
+
+
+        if($type == '')
+        {
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end and status in (2,3,4)";
+
+        }
+
+
+
 
 
 
@@ -1036,20 +1143,23 @@ class calender
 
 
 
-    public function GetDayCheckSumsgive($day_start,$day_end)
+    public function GetDayCheckSumsgive($day_start,$day_end,$type)
     {
-        $this->day_sum = 0
+        $this->day_sum = 0;
+        $this->day_sum_dade = 0;
         ?>
 
         <?php
         $dbconnect = new db();
 
 
-            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and status = 2 ";
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and status = 2 and check_type = :type ";
+
 
 
 
         $result = $dbconnect->connect->prepare($sql);
+        $result->bindParam("type",$type);
         $result->execute();
 
         if ($result->rowCount() > 0) {
@@ -1067,15 +1177,16 @@ class calender
 
 
 
-    public function GetDayCheckSumsungive($day_start,$day_end)
+    public function GetDayCheckSumsungive($day_start,$day_end , $type)
     {
         ?>
 
         <?php
+        $this->day_sum_nadade = 0;
         $dbconnect = new db();
 
 
-            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and status  IN(1,5) ";
+            $sql = "select * from checks where time_check > $day_start and time_check < $day_end  and status  IN(1,5)  and check_type = $type ";
 
 
 

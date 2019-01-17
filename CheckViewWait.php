@@ -54,6 +54,32 @@ $check->GetCheckDetail($id);
         <td>  <b> تاریخ چک</b></td>
         <td><b><?php echo jdate('Y/m/d' , $check->time_check , '','','en') ;?></b></td>
     </tr>
+    <form method="post" action="SetCheckType.php">
+        <tr>
+            <td>
+                <b> حواله / چک</b></td>
+            <td>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                    <select name="type" class="form-control input-lg" >
+                        <option value="0">چک</option>
+                        <option value="1">حواله</option>
+                    </select>
+
+                    <input type="hidden" value="<?php echo $id; ?>" name="id">
+
+                </div>
+
+
+                <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                    <button class="form-control input-lg btn btn-lg btn-primary">ذخیره</button>
+                </div>
+
+            </td>
+        </tr>
+
+
+    </form>
+
 
     <tr>
         <td>  <b>  مدیریت </b></td>

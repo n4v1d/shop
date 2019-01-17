@@ -102,8 +102,8 @@ error_reporting(0)
     </div>
 </form>
 
-    <form method="get" action="Check_List.php">
 
+    <form method="get" action="Check_List.php">
 </div>
 <!-- 1 - 7 -->
 <table class="table table-bordered table-striped table-hover text-center">

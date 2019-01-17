@@ -287,7 +287,17 @@ class check
         $result->execute();
 
         ?>
+        <script>
+            $(".view").click(function () {
+                var id = this.id;
+                $.post("page.php", {page: 'viewFactor', id: id}, function (data) {
+                    $("#content").html(data);
 
+
+                });
+            });
+
+        </script>
         <form method="get" action="Check_List.php">
             <input  class="btn btn-lg btn-success" type="submit" style="position: fixed;z-index: 1000" value="ثبت دسته ای">
             <table class="table table-hover table-bordered table-striped table-responsive">
@@ -320,7 +330,7 @@ class check
 
                         <td><?php echo $id ?></td>
                         <td><input class="input-lg form-control checkbox " type="checkbox" name="check_list[]" value="<?php echo $rows->id; ?>"></td>
-                        <td><?php echo $rows->factorid; ?></td>
+                        <td><b class="view" id="<?php echo $rows->id; ?>"><?php echo $rows->factorid; ?></b></td>
                         <td><?php echo jdate('Y/m/d' , $rows->time , '','','en');?></td>
                         <td><?php echo $company->name;?></td>
                         <td><?php echo $branch->name; ?></td>

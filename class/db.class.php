@@ -1,7 +1,7 @@
 <?php
 class db
 {
-    private $servername = "192.168.1.12";
+    private $servername = "localhost";
     private $dbtype = "mysql";
     private $dbname = "shop";
     private $dbuser = "remote";

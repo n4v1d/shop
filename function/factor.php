@@ -117,7 +117,6 @@ function newFactor()
                     <option>18</option>
                     <option>19</option>
                     <option>20</option>
-                    <option>20</option>
                     <option>21</option>
                     <option>22</option>
                     <option>23</option>
