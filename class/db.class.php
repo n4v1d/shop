@@ -3,7 +3,7 @@ class db
 {
     private $servername = "192.168.1.12";
     private $dbtype = "mysql";
-    private $dbname = "test";
+    private $dbname = "shop";
     private $dbuser = "remote";
     private $dbpass = "";
     private $dsn;
