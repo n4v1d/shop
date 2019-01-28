@@ -20,20 +20,20 @@ require 'autoload.php';
  error_reporting(0);
 
 set_time_limit(0);
-$tax = new tax2();
+$tax = new tax();
 
 
     //$day = $_POST['day'];
     //$month = $_POST['month'];
     //$year = $_POST['year'];
     //$from = jmktime("00","00","01",$month , $day , $year);
-    $from = jmktime("00","00","01",'08' , '01' , '1397');
+    $from = jmktime("00","00","01",'07' , '01' , '1397');
 
 
     //$tday = $_POST['tday'];
     //$tmonth = $_POST['tmonth'];
     //$tyear = $_POST['tyear'];
-    $to = jmktime("23","59","59",'08' , '31' , '1397');
+    $to = jmktime("23","59","59",'09' , '31' , '1397');
 
 
 

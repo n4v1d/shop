@@ -3,8 +3,8 @@ class db
 {
     private $servername = "localhost";
     private $dbtype = "mysql";
-    private $dbname = "shop";
-    private $dbuser = "remote";
+    private $dbname = "shop2";
+    private $dbuser = "root";
     private $dbpass = "";
     private $dsn;
     public $connect;

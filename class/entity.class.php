@@ -901,7 +901,7 @@ class entity
 
 
                                 <?php
-                                if ($_SESSION['UserId'] == "1" || $_SESSION['UserId'] == "9" || $_SESSION['UserId'] == "13" || $_SESSION['UserId'] == "55" || $_SESSION['UserId'] == "57" || $_SESSION['UserId'] == "61") {
+                                if ($_SESSION['UserId'] == "1" || $_SESSION['UserId'] == "9" || $_SESSION['UserId'] == "13" || $_SESSION['UserId'] == "55" || $_SESSION['UserId'] == "57" || $_SESSION['UserId'] == "61"|| $_SESSION['UserId'] == "63   ") {
                                     if ($factor->status != '3') {
                                         ?>
                                         <br><br><br>
