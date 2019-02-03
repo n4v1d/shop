@@ -439,6 +439,124 @@ class tax
 
     }
 
+
+
+
+
+
+
+    public function GetDiscountedList($array)
+    {
+        $id = '1';
+
+        $dbconnect = new db();
+
+
+
+        $sql = "select * from factorentity  where factorid in ('" . implode("','", $array) . "') group by factorid ";
+
+        $result = $dbconnect->connect->prepare($sql);
+
+        $result->execute();
+
+        $fullgross = '0';
+
+        echo  $result->rowCount();
+        if($result->rowCount() > '0')
+        {
+            ?>
+            <br>
+            <br>
+            <table class="table table-responsive table-bordered table-striped ">
+
+                <thead class="text-center alert alert-info">
+                <td>ردیف</td>
+                <td>شماره فاکتور</td>
+                <td>تاریخ فاکتور</td>
+                <td > نام شرکت</td>
+                <td> مبلغ ناخالص </td>
+                <td>مبلغ تخفیفات </td>
+                <td>مبلغ بعد تخفیفات </td>
+                <td>  ارزش افزوده </td>
+                <td>   خالص فاکتور </td>
+                </thead>
+                <tbody>
+                <?php
+                $data = $result->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($data as $rows)
+                {
+                    $this->GetFactorDataWithFactorid($rows->factorid);
+                    $company = new company();
+                    $company->getCompanyDetail($this->company);
+                    ?>
+                    <tr class="text-center alert  alert-success ">
+                        <td><?php echo $id; $id = $id + 1; ?></td>
+                        <td><?php echo $this->factorid?></td>
+                        <td><?php echo jdate('Y/m/d',$this->time , '','','en');?></td>
+                        <td class="CompanyName"><?php echo $company->name?></td>
+                        <td><?php round($this->getFactorGrossAmount($rows->factorid));?></td>
+
+                        <!--  Discount Place  -->
+                        <td><?php round($this->getDiscountPrice($rows->factorid));?></td>
+                        <td> <?php echo  round($this->Gross - $this->FinalDiscount)?></td>
+                        <td><?php $this->GetTaxPrice($rows->factorid); ?></td>
+                        <td><?php  echo number_format(round($this->Gross -  $this->FinalDiscount + $this->tax)); ?></td>
+                    </tr>
+                    <?php
+
+
+                }
+                ?>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"><?php  echo number_format(round($this->AllTaxSum)); ?></td>
+                    <td class="text-center"> <?php echo number_format(round($fullgross));?></td>
+                </tr>
+                </tbody>
+
+            </table>
+            <?php
+        }
+
+    }
+
+
+    public function GetAllDiscountList()
+    {
+        $dbconnect = new db();
+        $sql = "select * from factor  where  time > :from and time < :to order by time ASC";
+        $result = $dbconnect->connect->prepare($sql);
+
+
+        $result->execute();
+
+        //echo $result->rowCount();
+
+        $array = array();
+        if($result->rowCount() > '0')
+        {
+            $data = $result->fetchAll(PDO::FETCH_OBJ);
+            foreach ($data as $rows)
+            {
+                $array[]= $rows->id;
+            }
+        }
+
+
+        $this->GetAllProductWithDiscount($array);
+
+
+    }
+
+
 }
 
 ?>

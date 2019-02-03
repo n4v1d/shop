@@ -343,7 +343,7 @@ class tax2
 
 
 
-    public function GetAllProductWithDiscount($array)
+    public function GetAllDiscountList()
     {
         $id = '1';
 
@@ -351,11 +351,12 @@ class tax2
 
 
 
-        $sql = "select * from factorentity  where factorid in ('" . implode("','", $array) . "') group by factorid ";
+        $sql = "select * from factorentity where discountnaghdi > 8 and discountnaghdi < 9  group by factorid";
 
         $result = $dbconnect->connect->prepare($sql);
 
         $result->execute();
+        
 
         $fullgross = '0';
 

@@ -139,9 +139,15 @@ session_start();
 
                                             <li ><a href="#" id="chart" class=" page"   style="font-size: 20px"> نمودار تغییر قیمت کالا  </a></li>                                        <li class="divider"></li>
                                             <?php
+                                            if($_SESSION['UserLevel'] == '1' ||$_SESSION['UserLevel'] == '3' ||$_SESSION['UserLevel'] == '2'||$_SESSION['UserLevel'] == '10') {
+                                                ?>
+                                                <li ><a href="#" id="BuyReport" class=" page"   style="font-size: 20px">گزارش خرید  </a></li>
+                                                <li class="divider"></li>
+
+                                                <?php
+                                            }
                                             if($_SESSION['UserLevel'] == '1' ||$_SESSION['UserLevel'] == '3' ||$_SESSION['UserLevel'] == '2') {
                                                 ?>
-                                                <li ><a href="#" id="BuyReport" class=" page"   style="font-size: 20px">گزارش خرید  </a></li>                                        <li class="divider"></li>
                                                 <li ><a href="#" id="PriceReport" class=" page"   style="font-size: 20px"> گزارش کالا </a></li>                                        <li class="divider"></li>
                                                 <li ><a href="/shop/franchise.php" id="PriceReport" class=" page"   style="font-size: 20px"> گزارش کالا فرانچایز </a></li>                                        <li class="divider"></li>
                                                 <li ><a href="#" id="ProductLIst" class=" page"   style="font-size: 20px"> لیست کالاها</a></li>

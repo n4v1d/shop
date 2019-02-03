@@ -74,7 +74,7 @@ class report
     public function GetProductList()
     {
         $dbconnect = new db();
-        $sql = "select * from product order by productid";
+        $sql = "select * from product order by productid limit 0,100";
         $result = $dbconnect->connect->prepare($sql);
 
         $result->execute();
@@ -93,6 +93,9 @@ class report
                 $data = $result->fetchAll(PDO::FETCH_OBJ);
                 foreach ($data as $rows)
                     {
+                           $this->masraf = 0;
+                           $this->forosh = 0;
+
                         $this->GetProductData($rows->productid);
                         ?>
                         <tr>
@@ -114,8 +117,9 @@ class report
     {
         $this->masraf = 0;
         $this->forosh = 0;
+
         $dbconnect = new db();
-        $sql = "select * from factorentity where productid = $id order by id desc limit 0,1";
+        $sql = "select * from factorentity where productid = $id  and feshantion = 0 order by id desc limit 0,1";
         $result = $dbconnect->connect->prepare($sql);
 
         $result->execute();
@@ -126,6 +130,7 @@ class report
                 $data = $result->fetchAll(PDO::FETCH_OBJ);
                 foreach ($data as $rows)
                     {
+
                         $this->forosh = $rows->currentgheymatforrosh;
                         $this->masraf = $rows->currentgheymatmasraf;
 
