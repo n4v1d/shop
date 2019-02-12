@@ -908,7 +908,7 @@ function viewFactor()
                     }
 
 
-                    if ($factor->status == '2') {
+                    if ($factor->status == '2') {       
 
                         ?>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="unsetfactor.php?factorid=<?php echo $_POST['id']; ?>"> <button class="btn btn-primary" id="<?php echo $factor->id; ?>" >لغو تایید </button></a>
@@ -1713,5 +1713,13 @@ function AddFactorMessage()
     $messages->InsertNewFactorMessage($userid,$factorid,$message);
 
 }
+
+
+function GetUserFactorDetail()
+{
+    $factor = new factor();
+    $factor->GetUserFactorDetail();
+}
+
 
 ?>

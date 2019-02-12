@@ -74,7 +74,7 @@ class report
     public function GetProductList()
     {
         $dbconnect = new db();
-        $sql = "select * from product order by productid limit 0,100";
+        $sql = "select * from product order by productid ";
         $result = $dbconnect->connect->prepare($sql);
 
         $result->execute();

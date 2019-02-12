@@ -425,6 +425,12 @@ switch ($page)
 
             break;
 
+            case "GetUserFactorDetail":
+
+                GetUserFactorDetail();
+
+            break;
+
 
 
 

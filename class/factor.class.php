@@ -348,12 +348,12 @@ require 'lib/jdf.php';
         {
 
 
-            $sql = "select * from factor where branch = :branch and status = $status   order by id Desc limit $start,150 ";
+            $sql = "select * from factor where branch = :branch and status = $status   order by id Desc ";
             echo '<input type="hidden" id="branchid"  value="' . $branch .  '">';
         }
         else
         {
-            $sql = "select * from factor  where status = $status order by id Desc limit $start,150 ";
+            $sql = "select * from factor  where status = $status order by id Desc ";
             echo '<input type="hidden" id="branchid" value="">';
 
         }
@@ -387,17 +387,30 @@ require 'lib/jdf.php';
                         });
 
                     });
+
+                     $(".User").click(function () {
+                        $.post("page.php", {page: 'GetUserFactorDetail'}, function (data) {
+                            $("#content").html(data);
+                            $('html,body').animate({
+                                    scrollTop: $("#content").offset().top
+                                },
+                                'slow')
+                        });
+
+                    });
                 </script>
-                <table class="table table-responsive  table-bordered text-center" > <tr><td>شماره فاکتور</td> <td>شعبه </td> <td>نام شرکت</td> <td>تاریخ </td>  <td> مبلغ</td> <td>سازنده </td> <td> وضعیت</td> <td>مدیریت</td></tr>
+                <table class="table table-responsive  table-bordered text-center" > <tr><td> ردیف</td><td>شماره فاکتور</td> <td>شعبه </td> <td>نام شرکت</td> <td>تاریخ </td>  <td> مبلغ</td> <td>سازنده </td> <td> وضعیت</td> <td>مدیریت</td></tr>
 
                     <?php
+                    $i = 0;
                     require 'lib/jdf.php';
                     foreach ($data as $rows) {
                         {
+                            $i = $i +1;
                             ?>
                             <tr>
-                                <td width="10%"><?php echo $rows->factorid; ?> </td>
-
+                                <td width="10%"><?php echo $i; ?> </td>
+                                <td width="10%"><b><?php echo $rows->factorid; ?></b> </td>
                                 <td width="10%"
                                 ><?php
                                     $branchClass->GetBranchNameById($rows->branch);
@@ -407,10 +420,12 @@ require 'lib/jdf.php';
                                 </td>
 
 
-                                <td>                <?php $company = new company(); $company->getCompanyDetail($rows->company); echo $company->name;?>                 </td>
+                                <td><?php $company = new company(); $company->getCompanyDetail($rows->company); echo $company->name;?></td>
                                 <td><?php echo jdate("d:F:Y",$rows->time,'','','en'); ?> </td>
                                 <td class="text-center"><b><?php echo number_format($rows->fullprice); ?></b> </td>
-                                <td><?php  $member->getUserData($rows->creator); echo $member->name; ?> </td>
+
+                                <td ><span ><?php  $member->getUserData($rows->creator); echo $member->name; ?></span> </td>
+
                                 <td><?php
                                     if($rows->status == '0')
                                     {
@@ -2735,7 +2750,73 @@ public function getAllFactorBetweenData($from,$to , $productid)
 }
 
 
+
+    public function GetUserFactorDetail()
+    {
+        $dbconnect = new db();
+        $sql = "select * from user ";
+
+        $result = $dbconnect->connect->prepare($sql);
+
+        $result->execute();
+
+            $user = new user();
+            if($result->rowCount() > 0)
+            {
+                ?>
+                        <table class="table table-responsive table-hover table-striped table-bordered text-center">
+                            <thead>
+                            <td>نام کاربر</td>
+                            <td>تایید نشده</td>
+                            <td>تایید شده</td>
+                            <td>منتظر ثبت</td>
+                            <td> ثبت شده</td>
+                            <td>تعداد کل</td>
+                            </thead>
+                <?php
+
+                    $data = $result->fetchAll(PDO::FETCH_OBJ);
+                    foreach ($data as $rows)
+                    {
+                        $user->GetUserData($rows->id);
+                        ?>
+                           <tr>
+                             <td><?php echo $user->name; ?> </td>
+                            <td><?php $this->GetUserFactorCount($rows->id , 0) ?></td>
+                            <td><?php $this->GetUserFactorCount($rows->id , 1) ?></td>
+                            <td><?php $this->GetUserFactorCount($rows->id , 2) ?></td>
+                            <td><?php $this->GetUserFactorCount($rows->id , 3) ?></td>
+                            <td><?php $this->GetUserFactorCount($rows->id , 10) ?></td>
+                            </tr>
+                        <?php
+                    }
+
+            }
+        }
+        
+        
+        
+    public function GetUserFactorCount($user , $status)
+    {
+        $dbconnect = new db();
+        if($status == 10)
+            {
+              $sql = "select * from factor where creator = $user  ";
+
+            }
+        else
+            {
+                $sql = "select * from factor where creator = $user and status = $status ";
+            }
+
+        $result = $dbconnect->connect->prepare($sql);
+
+        $result->execute();
+
+          echo $result->rowCount();
+
+
+    }
+
 }
-
-
 ?>
